@@ -8,7 +8,7 @@
 # assessment. NOT a medical device (see disclaimer).
 #
 # V1.0 Enhancements:
-#   - Extreme stability hardening (tryCatch everywhere, chunked processing)
+#   - Stability hardening (tryCatch everywhere, chunked processing)
 #   - Performance timing for imports, checks, and all tasks
 #   - Landing page for optional user info (name, function, email)
 #   - Dynamic check constraints: is_not.na, not_contains, BETWEEN,
