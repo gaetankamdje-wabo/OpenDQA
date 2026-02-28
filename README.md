@@ -180,7 +180,7 @@ Optional dependencies:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/gkamdje/OpenDQA.git
+git clone  https://github.com/gaetankamdje-wabo/OpenDQA.git
 
 # 2. Navigate into the project directory
 cd OpenDQA
