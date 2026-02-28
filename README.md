@@ -27,7 +27,7 @@
 - [Data Format](#data-format)
 - [Data Sources](#data-sources)
 - [Configuration](#configuration)
-- [ML-Assisted Features](#ml-assisted-features)
+- [Assisted Features](#assisted-features)
 - [Reporting](#reporting)
 - [Multilingual Support](#multilingual-support)
 - [Test Data & Validation](#test-data--validation)
@@ -53,19 +53,19 @@ Open DQA follows a **fitness-for-purpose** approach: data quality is evaluated a
 ## Key Features
 
 | Feature | Description |
-|---|---|
-| 🔍 **77 Built-in Checks** | Covering 6 quality dimensions: Completeness (16), Age Plausibility (15), Gender Plausibility (15), Temporal Consistency (6), Diagnosis–Procedure Consistency (15), Code Integrity (10) |
-| 🤖 **Assisted Anomaly Detection** | Cluster-based anomaly detection with automated cleansing proposals |
-| 🌍 **Trilingual Interface** | Full UI, check descriptions, and reports in English, German, and French |
-| 📊 **Step-by-Step Workflow** | Guided wizard from data upload through assessment to cleansing and documentation |
-| 📝 **Publication-Ready Reports** | One-click Word (.docx) and CSV export with cryptographic session fingerprints |
-| ✏️ **Custom Check Builder** | Define institution-specific rules using `is_not.na`, `not_contains`, `BETWEEN`, `NOT BETWEEN`, `IN()`, `NOT IN()`, `REGEXP` |
-| 🔗 **Multi-Source Import** | CSV, Excel, JSON, FHIR Bundle (R4), SQL (PostgreSQL, MS SQL) with i2b2 and OMOP CDM templates |
-| 🧹 **Guided Data Cleansing** | Step-by-step cleansing with full audit trail and GCP-compliant documentation |
-| 🔒 **Audit Trail** | Full session logging with cryptographic document fingerprints for regulatory compliance |
-| 🎓 **Built-in Tutorial** | Interactive step-by-step tutorial with concrete examples for new users |
-| ⚡ **Performance Timing** | Runtime profiling for imports, checks, and all tasks |
-| 📦 **Portable Deployment** | Runs locally, on-premise servers, or via Shiny Server |
+|---|
+|  **77 Built-in Checks** | Covering 6 quality dimensions: Completeness (16), Age Plausibility (15), Gender Plausibility (15), Temporal Consistency (6), Diagnosis–Procedure Consistency (15), Code Integrity (10) |
+|  **Assisted Anomaly Detection** | Cluster-based anomaly detection with automated cleansing proposals |
+|  **Trilingual Interface** | Full UI, check descriptions, and reports in English, German, and French |
+|  **Step-by-Step Workflow** | Guided wizard from data upload through assessment to cleansing and documentation |
+|  **Publication-Ready Reports** | One-click Word (.docx) and CSV export with cryptographic session fingerprints |
+|  **Custom Check Builder** | Define institution-specific rules using `is_not.na`, `not_contains`, `BETWEEN`, `NOT BETWEEN`, `IN()`, `NOT IN()`, `REGEXP` |
+|  **Multi-Source Import** | CSV, Excel, JSON, FHIR Bundle (R4), SQL (PostgreSQL, MS SQL) with i2b2 and OMOP CDM templates |
+|  **Guided Data Cleansing** | Step-by-step cleansing with full audit trail and GCP-compliant documentation |
+|  **Audit Trail** | Full session logging with cryptographic document fingerprints for regulatory compliance |
+|  **Built-in Tutorial** | Interactive step-by-step tutorial with concrete examples for new users |
+|  **Performance Timing** | Runtime profiling for imports, checks, and all tasks |
+|  **Portable Deployment** | Runs locally, on-premise servers, or via Shiny Server |
 
 ---
 
@@ -73,22 +73,22 @@ Open DQA follows a **fitness-for-purpose** approach: data quality is evaluated a
 
 Open DQA implements **77 checks** across six dimensions, aligned with established DQ frameworks (Kahn et al., 2016; Weiskopf & Weng, 2013):
 
-### 1. 📋 Completeness (16 checks: `cat1_1` – `cat1_16`)
+### 1.  Completeness (16 checks: `cat1_1` – `cat1_16`)
 Detects missing clinical data by cross-referencing clinical narratives (anamnese) against coded fields. Identifies discrepancies such as: admission present but ICD missing, surgery mentioned but no OPS code, specific disease mentions (diabetes, COPD, hypertension, stroke, etc.) without corresponding ICD codes, and complete absence of both ICD and OPS on admitted cases.
 
-### 2. 👶 Age Plausibility (15 checks: `cat2_1` – `cat2_15`)
+### 2.  Age Plausibility (15 checks: `cat2_1` – `cat2_15`)
 Validates that patient age and diagnosis combinations are clinically plausible. Flags biologically impossible combinations such as prostate cancer (C61) in patients under 15, Alzheimer's (F00/G30) under 30, child developmental disorders (F80–F89) over 70, obstetric diagnoses in males, and age-inappropriate conditions like neonatal acne or delayed puberty in geriatric patients.
 
-### 3. ⚧ Gender Plausibility (15 checks: `cat3_1` – `cat3_15`)
+### 3.  Gender Plausibility (15 checks: `cat3_1` – `cat3_15`)
 Cross-validates gender-coded fields against gender-specific diagnoses (ICD-10) and procedures. Flags records such as ovarian cyst (N83) in male patients, prostatitis (N41) in female patients, pregnancy codes in males, endometriosis in males, cervical cancer (C53) in males, and phimosis (N47) in females.
 
-### 4. 🕒 Temporal Consistency (6 checks: `cat4_2`, `cat4_4`, `cat4_6`, `cat4_8`, `cat4_12`, `cat4_15`)
+### 4.  Temporal Consistency (6 checks: `cat4_2`, `cat4_4`, `cat4_6`, `cat4_8`, `cat4_12`, `cat4_15`)
 Ensures the logical ordering and validity of date fields. Detects discharge before admission, duplicate same-day admissions, future-dated admissions, same-day discharge with complex OPS codes, and admission before birth date.
 
-### 5. 🏥 Diagnosis–Procedure Consistency (15 checks: `cat5_1` – `cat5_15`)
+### 5.  Diagnosis–Procedure Consistency (15 checks: `cat5_1` – `cat5_15`)
 Validates co-occurrence of diagnoses and procedures using evidence-based clinical rules. Flags cases such as appendectomy without K35, knee replacement without M17, chemotherapy without cancer ICD, C-section in male patients, and hysterectomy without gynecological diagnosis.
 
-### 6. 🔢 Code Integrity (10 checks: `cat6_1` – `cat6_9`, `cat6_11`)
+### 6.  Code Integrity (10 checks: `cat6_1` – `cat6_9`, `cat6_11`)
 Validates syntactic and semantic correctness of coded clinical variables. Identifies invalid ICD syntax patterns, retired OPS codes, ICD-10 near-miss typos, ICD-9 codes in ICD-10 environments, placeholder/fake codes, invalid code structure, foreign code system markers, and unspecific ICD codes.
 
 ---
