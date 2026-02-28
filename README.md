@@ -4,13 +4,13 @@
 
 Developed at the Mannheim Institute for Intelligent Systems in Medicine (MIISM), Medical Faculty Mannheim, University of Heidelberg.
 
----
+
 
 ## Purpose
 
 Clinical research depends on data quality for specific research questions. Open DQA provides a structured, transparent, and reproducible workflow to assess, document, and improve the quality of clinical datasets before analysis. It supports the generation of publication-ready reports with full audit trails that satisfy documentation requirements for Good Clinical Practice (ICH E6(R2)), GDPR, ISO 14155, and FAIR principles.
 
----
+
 
 ## Features
 
@@ -25,7 +25,7 @@ Clinical research depends on data quality for specific research questions. Open 
 | **Trilingual interface** | English, German, French |
 | **Quality Score** | `100 × (1 − affected_records / total_records)` with severity-banded interpretation |
 
----
+
 
 ## Built-in Checks (77 total)
 
@@ -61,7 +61,7 @@ Load Data → Map Columns → Select Built-in → Build Custom → View Results 
 5. **Results & Quality Score** - View the overall quality score, severity distribution, category breakdown, and detailed issue table.
 6. **Data Cleansing** - Navigate issues patient-by-patient, apply corrections (keep, modify, remove), perform bulk operations, and export the cleaned dataset with a complete change log.
 
----
+
 
 ## Data Elements
 
@@ -79,7 +79,7 @@ Open DQA expects clinical datasets with the following standard fields (all optio
 | `birth_date` | Date | Patient date of birth |
 | `anamnese` | String | Free-text clinical notes |
 
----
+
 
 ## Quality Score
 
@@ -94,7 +94,7 @@ Quality Score = 100 × (1 − affected_records / total_records)
 | 59–40 | Orange | Moderate issues — may introduce bias; targeted cleansing recommended |
 | < 40 | Red | Critical — do not use data without resolving issues first |
 
----
+
 
 ## Installation and Usage
 
@@ -125,7 +125,7 @@ shiny::runApp("app.R")
 
 The application opens in the default browser. Maximum upload size is 2 GB.
 
----
+
 
 ## Test Data
 
@@ -147,7 +147,7 @@ Each record contains exactly the data elements needed to trigger one specific ch
 - **Diagnosis–procedure records** (`T_cat5_*`): Pair procedure codes with missing or mismatched diagnoses.
 - **Code integrity records** (`T_cat6_*`): Contain syntactically invalid, deprecated, or placeholder codes.
 
----
+
 
 ## Report Generation
 
@@ -170,7 +170,7 @@ Open DQA generates two types of Word documents via the `officer` and `flextable`
 
 Patient identifiers are automatically redacted in email-delivered reports.
 
----
+
 
 ## Repository Structure
 
@@ -189,19 +189,18 @@ OpenDQA/
 └── CHANGELOG.md
 ```
 
----
+
 
 ## Disclaimer
 
 Open DQA is an open-source research tool developed at Heidelberg University (MIISM). It is **not** a certified medical product under EU MDR, FDA, or any regulatory framework and must not be used as a basis for clinical decisions. The user is solely responsible for validating and interpreting all results.
 
----
+
 
 ## License
 
 MIT License — see [LICENSE](LICENSE).
 
----
 
 ## Authors
 
@@ -210,7 +209,7 @@ G. Kamdje Wabo, P. Sokolowski, T. Ganslandt, F. Siegel
 Mannheim Institute for Intelligent Systems in Medicine (MIISM)  
 Medical Faculty Mannheim, Heidelberg University
 
----
+
 
 ## Citation
 
