@@ -1,8 +1,10 @@
+<<<<<<< HEAD
 # Open DQA — Open-Source Data Quality Assessment for Clinical Research Data
+=======
+# Open DQA - Open-Source Data Quality Assessment
 
-<p align="center">
-  <img src="assets/banner.png" alt="Open DQA Banner" width="800"/>
-</p>
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
+
 
 <p align="center">
   <a href="https://github.com/gkamdje/OpenDQA/releases"><img src="https://img.shields.io/badge/version-1.0-blue.svg" alt="Version"/></a>
@@ -28,7 +30,11 @@
 - [Data Format](#data-format)
 - [Data Sources](#data-sources)
 - [Configuration](#configuration)
+<<<<<<< HEAD
 - [Statistical Analysis Assistant](#statistical-analysis-assistant)
+=======
+- [Assisted Features](#assisted-features)
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 - [Reporting](#reporting)
 - [Multilingual Support](#multilingual-support)
 - [Test Data and Validation](#test-data-and-validation)
@@ -57,6 +63,7 @@ A complementary **statistical analysis assistant** employs classical descriptive
 ## Key Features
 
 | Feature | Description |
+<<<<<<< HEAD
 |---|---|
 | **77 Built-in Checks** | Rule-based checks across 6 quality dimensions: Completeness (16), Age Plausibility (15), Gender Plausibility (15), Temporal Consistency (6), Diagnosis–Procedure Consistency (15), Code Integrity (10) |
 | **Statistical Analysis Assistant** | Classical statistical methods (IQR, Z-score, Levenshtein distance, Shannon entropy, Benford's Law, Chi-squared, Cramér's V, Spearman correlation) for automated custom check suggestion |
@@ -70,6 +77,21 @@ A complementary **statistical analysis assistant** employs classical descriptive
 | **Built-in Tutorial** | Interactive step-by-step tutorial for new users |
 | **Performance Timing** | Runtime profiling for imports, checks, and all computational tasks |
 | **Portable Deployment** | Runs locally, on-premise, or via Shiny Server |
+=======
+|---|
+|  **77 Built-in Checks** | Covering 6 quality dimensions: Completeness (16), Age Plausibility (15), Gender Plausibility (15), Temporal Consistency (6), Diagnosis–Procedure Consistency (15), Code Integrity (10) |
+|  **Assisted Anomaly Detection** | Cluster-based anomaly detection with automated cleansing proposals |
+|  **Trilingual Interface** | Full UI, check descriptions, and reports in English, German, and French |
+|  **Step-by-Step Workflow** | Guided wizard from data upload through assessment to cleansing and documentation |
+|  **Publication-Ready Reports** | One-click Word (.docx) and CSV export with cryptographic session fingerprints |
+|  **Custom Check Builder** | Define institution-specific rules using `is_not.na`, `not_contains`, `BETWEEN`, `NOT BETWEEN`, `IN()`, `NOT IN()`, `REGEXP` |
+|  **Multi-Source Import** | CSV, Excel, JSON, FHIR Bundle (R4), SQL (PostgreSQL, MS SQL) with i2b2 and OMOP CDM templates |
+|  **Guided Data Cleansing** | Step-by-step cleansing with full audit trail and GCP-compliant documentation |
+|  **Audit Trail** | Full session logging with cryptographic document fingerprints for regulatory compliance |
+|  **Built-in Tutorial** | Interactive step-by-step tutorial with concrete examples for new users |
+|  **Performance Timing** | Runtime profiling for imports, checks, and all tasks |
+|  **Portable Deployment** | Runs locally, on-premise servers, or via Shiny Server |
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 
 ---
 
@@ -77,6 +99,7 @@ A complementary **statistical analysis assistant** employs classical descriptive
 
 Open DQA implements **77 checks** across six dimensions, aligned with established data quality frameworks (Kahn et al., 2016; Weiskopf & Weng, 2013):
 
+<<<<<<< HEAD
 ### 1. Completeness (16 checks: `cat1_1` – `cat1_16`)
 Detects missing clinical data by cross-referencing clinical narrative text (anamnese) against coded fields. Identifies discrepancies such as admission present but ICD code missing, surgical procedures mentioned in narrative but OPS code absent, specific disease mentions (diabetes, COPD, hypertension, stroke, depression) without corresponding ICD codes, and records with admission date but both ICD and OPS codes absent.
 
@@ -94,6 +117,39 @@ Validates co-occurrence of diagnoses and procedures using evidence-based clinica
 
 ### 6. Code Integrity (10 checks: `cat6_1` – `cat6_9`, `cat6_11`)
 Validates syntactic and semantic correctness of coded clinical variables using regex-based pattern matching. Identifies invalid ICD-10 syntax, retired OPS codes (heuristic), ICD near-miss typos, ICD-9 codes in ICD-10 environments, placeholder codes (xxx, zzz), invalid OPS structure, foreign code system markers, and unspecific ICD codes (R99, Z00).
+=======
+### 1.  Completeness (16 checks: `cat1_1` – `cat1_16`)
+Detects missing clinical data by cross-referencing clinical narratives (anamnese) against coded fields. Identifies discrepancies such as: admission present but ICD missing, surgery mentioned but no OPS code, specific disease mentions (diabetes, COPD, hypertension, stroke, etc.) without corresponding ICD codes, and complete absence of both ICD and OPS on admitted cases.
+
+### 2.  Age Plausibility (15 checks: `cat2_1` – `cat2_15`)
+Validates that patient age and diagnosis combinations are clinically plausible. Flags biologically impossible combinations such as prostate cancer (C61) in patients under 15, Alzheimer's (F00/G30) under 30, child developmental disorders (F80–F89) over 70, obstetric diagnoses in males, and age-inappropriate conditions like neonatal acne or delayed puberty in geriatric patients.
+
+### 3.  Gender Plausibility (15 checks: `cat3_1` – `cat3_15`)
+Cross-validates gender-coded fields against gender-specific diagnoses (ICD-10) and procedures. Flags records such as ovarian cyst (N83) in male patients, prostatitis (N41) in female patients, pregnancy codes in males, endometriosis in males, cervical cancer (C53) in males, and phimosis (N47) in females.
+
+### 4.  Temporal Consistency (6 checks: `cat4_2`, `cat4_4`, `cat4_6`, `cat4_8`, `cat4_12`, `cat4_15`)
+Ensures the logical ordering and validity of date fields. Detects discharge before admission, duplicate same-day admissions, future-dated admissions, same-day discharge with complex OPS codes, and admission before birth date.
+
+### 5.  Diagnosis–Procedure Consistency (15 checks: `cat5_1` – `cat5_15`)
+Validates co-occurrence of diagnoses and procedures using evidence-based clinical rules. Flags cases such as appendectomy without K35, knee replacement without M17, chemotherapy without cancer ICD, C-section in male patients, and hysterectomy without gynecological diagnosis.
+
+### 6.  Code Integrity (10 checks: `cat6_1` – `cat6_9`, `cat6_11`)
+Validates syntactic and semantic correctness of coded clinical variables. Identifies invalid ICD syntax patterns, retired OPS codes, ICD-10 near-miss typos, ICD-9 codes in ICD-10 environments, placeholder/fake codes, invalid code structure, foreign code system markers, and unspecific ICD codes.
+
+---
+
+## Screenshots
+
+> *(Screenshots folder: `assets/`)*
+
+| Welcome Page | Data Import |
+|---|---|
+| ![Welcome](assets/screenshot_welcome.png) | ![Import](assets/screenshot_import.png) |
+
+| Check Results | Word Report |
+|---|---|
+| ![Results](assets/screenshot_results.png) | ![Report](assets/screenshot_report.png) |
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 
 ---
 
@@ -103,6 +159,7 @@ Open DQA uses a guided, step-by-step wizard:
 
 | Step | Name | Description |
 |---|---|---|
+<<<<<<< HEAD
 | **0** | Welcome | Landing page with feature overview, disclaimer acceptance, tutorial access |
 | **T** | Tutorial | Interactive walkthrough of all features with examples |
 | **1** | Load Data | Multi-source import: local files (CSV, Excel, JSON, FHIR), SQL databases, FHIR servers |
@@ -111,6 +168,16 @@ Open DQA uses a guided, step-by-step wizard:
 | **4** | Custom Checks | Build institution-specific rules via visual editor; optionally invoke statistical analysis assistant for data-driven suggestions |
 | **5** | Results | Quality score, severity analysis, per-check results, Word/CSV report export |
 | **6** | Cleansing | Guided data cleansing with audit trail and final documentation |
+=======
+| **0** | 🏠 Welcome | Landing page with feature overview, tutorial access, disclaimer acceptance |
+| **T** | 🎓 Tutorial | Interactive walkthrough of all features with concrete examples |
+| **1** | 📁 Load Data | Multi-source import: local files (CSV, Excel, JSON, FHIR), SQL databases, FHIR servers |
+| **2** | 🗺️ Map Columns | Map dataset columns to Open DQA target fields with gender value standardization |
+| **3** | ✅ Select Checks | Browse and select from 77 built-in checks, organized by category with availability indicators |
+| **4** | ✏️ Custom Checks | Build institution-specific rules using the visual rule editor |
+| **5** | 📊 Results | Interactive dashboard with quality score, severity analysis, and category breakdown |
+| **6** | 🧹 Cleansing | Guided data cleansing with assistant, full audit trail, and final documentation |
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 
 ---
 
@@ -158,7 +225,11 @@ Open DQA uses a guided, step-by-step wizard:
 
 | Package | Purpose |
 |---|---|
+<<<<<<< HEAD
 | `cluster` | Listed in the application header; imported at startup if available. Not actively invoked in the current version (V1.0). |
+=======
+| `cluster` | clustering for anomaly detection |
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 | `emayili` | Email report delivery via SMTP |
 | `DBI` + `RPostgres` | PostgreSQL database connectivity |
 | `DBI` + `odbc` | Microsoft SQL Server connectivity |
@@ -170,7 +241,14 @@ Open DQA uses a guided, step-by-step wizard:
 ### Option 1: Clone from GitHub
 
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/gkamdje/OpenDQA.git
+=======
+# 1. Clone the repository
+git clone  https://github.com/gaetankamdje-wabo/OpenDQA.git
+
+# 2. Navigate into the project directory
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 cd OpenDQA
 Rscript install_dependencies.R
 Rscript -e "shiny::runApp('app.R', launch.browser = TRUE)"
@@ -187,6 +265,7 @@ Rscript -e "shiny::runApp('app.R', launch.browser = TRUE)"
 
 ## Quick Start
 
+<<<<<<< HEAD
 1. Launch: `shiny::runApp("app.R", launch.browser = TRUE)`
 2. Accept the research tool disclaimer.
 3. **Step 1**: Select data source and upload or connect.
@@ -195,6 +274,27 @@ Rscript -e "shiny::runApp('app.R', launch.browser = TRUE)"
 6. **Step 4**: Optionally define custom checks or invoke the statistical analysis assistant.
 7. **Step 5**: Review results and export reports (Word, CSV).
 8. **Step 6**: Perform guided cleansing with audit trail.
+=======
+### 1. Launch the Application
+
+```r
+shiny::runApp("app.R", launch.browser = TRUE)
+```
+
+### 2. Accept the Disclaimer
+
+Read and accept the research tool disclaimer on the landing page.
+
+### 3. Upload & Assess
+
+1. Click **"Proceed to Assessment"** (or take the Tutorial first).
+2. In **Step 1**, select your data source (local file, SQL database, or FHIR server) and upload/connect.
+3. In **Step 2**, map your columns to the 9 target fields and configure gender value standardization.
+4. In **Step 3**, select which of the 77 built-in checks to run (checks requiring unavailable columns are dimmed).
+5. In **Step 4**, optionally define custom checks using the visual rule builder.
+6. Click **"Run All Checks"** and review results in **Step 5** with the interactive dashboard.
+7. In **Step 6**, use guided cleansing with the assistant and export your final Word report and CSV.
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 
 ---
 
@@ -242,6 +342,12 @@ thresholds:
   min_patient_age: 0
   max_los: 365
 
+<<<<<<< HEAD
+=======
+
+
+# Reporting
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 reporting:
   default_language: "en"           # en | de | fr
   institution_name: "Your Institution"
@@ -259,9 +365,15 @@ logging:
 
 ---
 
+<<<<<<< HEAD
 ## Statistical Analysis Assistant
 
 Open DQA includes a **statistical analysis assistant** that complements the 77 rule-based checks by analyzing uploaded data and generating data-driven custom check suggestions. This assistant employs exclusively **classical statistical and heuristic methods**.
+=======
+## Assisted Features
+
+Open DQA integrates optional assistance:
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 
 ### Implemented Methods
 
@@ -363,8 +475,13 @@ OpenDQA/
 │   ├── checks/                    # Check implementation functions
 │   ├── ui/                        # UI modules
 │   ├── server/                    # Server-side modules
+<<<<<<< HEAD
 │   ├── reporting/                 # Report generation
 │   ├── assistance/                # Statistical analysis assistant
+=======
+│   ├── reporting/                 # Report generation functions
+│   ├── assistance/                #  integration
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
 │   └── utils/                     # Utility functions
 ├── config/
 │   └── settings.yml               # Application configuration
@@ -426,6 +543,15 @@ MIT License. See [LICENSE](LICENSE).
 ## Contact
 
 - **Lead Developer**: Gaetan Kamdje Wabo — [gaetankamdje.wabo@medma.uni-heidelberg.de](mailto:gaetankamdje.wabo@medma.uni-heidelberg.de) | [gaetan.kamdje-wabo@umm.de](mailto:gaetan.kamdje-wabo@umm.de)
+<<<<<<< HEAD
 - **Institution**: MIISM, Universität Heidelberg
 - **Issues**: [GitHub Issues](https://github.com/gkamdje/OpenDQA/issues)
 - **Security**: Email directly; do not open public issues.
+=======
+- **Institution**: MIISM — Medical Informatics in Translational and Integrated Medicine, Universität Heidelberg
+- **Issues & Bug Reports**: [GitHub Issues](https://github.com/gkamdje/OpenDQA/issues)
+- **Security Disclosures**: Please email directly rather than opening a public issue.
+
+---
+
+>>>>>>> 3f7f6b461c608d0b5eef6abbdc3cbde882860e00
