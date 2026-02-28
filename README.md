@@ -1,14 +1,14 @@
-# Open DQA — Data Quality Assessment for Clinical Research
+# Open DQA - Data Quality Assessment for Clinical Research
 
 **Open DQA** is an open-source, browser-based platform for systematic data quality assessment and cleansing of clinical datasets. Built as an R/Shiny application, it implements a fitness-for-purpose approach: data quality is evaluated against the specific requirements of the user's research question.
 
-Developed at the Mannheim Institute for Intelligent Systems in Medicine (MIISM), Medical Faculty Mannheim, Heidelberg University.
+Developed at the Mannheim Institute for Intelligent Systems in Medicine (MIISM), Medical Faculty Mannheim, University of Heidelberg.
 
 ---
 
 ## Purpose
 
-Clinical research depends on data quality. Open DQA provides a structured, transparent, and reproducible workflow to assess, document, and improve the quality of clinical datasets before analysis. It generates publication-ready reports with full audit trails that satisfy documentation requirements for Good Clinical Practice (ICH E6(R2)), GDPR, ISO 14155, and FAIR principles.
+Clinical research depends on data quality for specific research questions. Open DQA provides a structured, transparent, and reproducible workflow to assess, document, and improve the quality of clinical datasets before analysis. It supports the generation of publication-ready reports with full audit trails that satisfy documentation requirements for Good Clinical Practice (ICH E6(R2)), GDPR, ISO 14155, and FAIR principles.
 
 ---
 
@@ -54,12 +54,12 @@ Load Data → Map Columns → Select Built-in → Build Custom → View Results 
                           Checks           Checks         & Score        Document
 ```
 
-1. **Load Dataset** — Upload or connect to a data source.
-2. **Map Columns** — Assign dataset columns to standard fields (`patient_id`, `icd`, `ops`, `gender`, `admission_date`, `discharge_date`, `age`, `birth_date`, `anamnese`). Auto-detection pre-fills likely matches.
-3. **Select Built-in Checks** — Choose from 77 checks. Checks requiring unmapped columns are automatically greyed out.
-4. **Build Custom Checks** — Define additional fitness-for-purpose rules using a visual condition builder (column vs. value, column vs. column, with AND/OR logic). Checks are stored with name, severity, and description.
-5. **Results & Quality Score** — View the overall quality score, severity distribution, category breakdown, and detailed issue table.
-6. **Data Cleansing** — Navigate issues patient-by-patient, apply corrections (keep, modify, remove), perform bulk operations, and export the cleaned dataset with a complete change log.
+1. **Load Dataset** - Upload or connect to a data source.
+2. **Map Columns** - Assign dataset columns to standard fields (`patient_id`, `icd`, `ops`, `gender`, `admission_date`, `discharge_date`, `age`, `birth_date`, `anamnese`). Auto-detection pre-fills likely matches.
+3. **Select Built-in Checks** - Choose from 77 checks. Checks requiring unmapped columns are automatically greyed out.
+4. **Build Custom Checks** - Define additional fitness-for-purpose rules using a visual condition builder (column vs. value, column vs. column, with AND/OR logic). Checks are stored with name, severity, and description.
+5. **Results & Quality Score** - View the overall quality score, severity distribution, category breakdown, and detailed issue table.
+6. **Data Cleansing** - Navigate issues patient-by-patient, apply corrections (keep, modify, remove), perform bulk operations, and export the cleaned dataset with a complete change log.
 
 ---
 
