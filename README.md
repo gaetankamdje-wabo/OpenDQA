@@ -120,7 +120,7 @@ Open DQA uses a guided, step-by-step wizard:
 | **3** | ✅ Select Checks | Browse and select from 77 built-in checks, organized by category with availability indicators |
 | **4** | ✏️ Custom Checks | Build institution-specific rules using the visual rule editor |
 | **5** | 📊 Results | Interactive dashboard with quality score, severity analysis, and category breakdown |
-| **6** | 🧹 Cleansing | Guided data cleansing with ML assistant, full audit trail, and final documentation |
+| **6** | 🧹 Cleansing | Guided data cleansing with assistant, full audit trail, and final documentation |
 
 ---
 
@@ -167,7 +167,7 @@ Optional dependencies:
 
 | Package | Purpose |
 |---|---|
-| `cluster` | ML-based clustering for anomaly detection |
+| `cluster` | clustering for anomaly detection |
 | `emayili` | Email report delivery via SMTP |
 | `DBI` + `RPostgres` | PostgreSQL database connectivity |
 | `DBI` + `odbc` | Microsoft SQL Server connectivity |
@@ -235,7 +235,7 @@ Read and accept the research tool disclaimer on the landing page.
 4. In **Step 3**, select which of the 77 built-in checks to run (checks requiring unavailable columns are dimmed).
 5. In **Step 4**, optionally define custom checks using the visual rule builder.
 6. Click **"Run All Checks"** and review results in **Step 5** with the interactive dashboard.
-7. In **Step 6**, use guided cleansing with the ML assistant and export your final Word report and CSV.
+7. In **Step 6**, use guided cleansing with the assistant and export your final Word report and CSV.
 
 ---
 
@@ -307,12 +307,7 @@ thresholds:
   min_patient_age: 0               # Minimum plausible patient age (years)
   max_los: 365                     # Maximum plausible length of stay (days)
 
-# AI / ML features
-ai:
-  enabled: false
-  provider: "anthropic"            # anthropic | openai | local
-  model: "claude-sonnet-4-20250514"
-  api_key_env: "ANTHROPIC_API_KEY"
+
 
 # Reporting
 reporting:
@@ -330,9 +325,9 @@ email:
 
 ---
 
-## ML-Assisted Features
+## Assisted Features
 
-Open DQA integrates optional ML-powered assistance:
+Open DQA integrates optional assistance:
 
 - **Cluster-Based Anomaly Detection**: Uses the `cluster` package to identify data patterns and anomalies, proposing targeted cleansing actions.
 - **Near-Duplicate Detection**: Identifies potential typos and near-duplicates among categorical values using edit distance computation.
@@ -427,7 +422,7 @@ OpenDQA/
 │   ├── ui/                        # UI modules
 │   ├── server/                    # Server-side modules
 │   ├── reporting/                 # Report generation functions
-│   ├── assistance/                # ML/AI integration
+│   ├── assistance/                #  integration
 │   └── utils/                     # Utility functions
 │
 ├── config/
