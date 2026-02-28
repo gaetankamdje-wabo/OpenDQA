@@ -7,16 +7,13 @@
 # This is an open-source research tool for systematic clinical data quality
 # assessment. NOT a medical device (see disclaimer).
 #
-# V1.0 Enhancements:
+# V.0.1:
 #   - Stability hardening (tryCatch everywhere, chunked processing)
 #   - Performance timing for imports, checks, and all tasks
-#   - Landing page for optional user info (name, function, email)
 #   - Dynamic check constraints: is_not.na, not_contains, BETWEEN,
 #     NOT BETWEEN, IN(), NOT IN(), REGEXP
 #   - Assistant for checks and data cleansing (cluster-based)
 #   - Enhanced reports with detailed check info, metrics, plots
-#   - Email integration for sending reports (patient-ID redacted)
-#   - Professional footnotes
 #   - Self-learning performance optimization
 ###############################################################################
 pkgs <- c(
@@ -326,10 +323,10 @@ I18N <- list(
   landing_skip = list(en = "Skip & Continue", de = "\u00dcberspringen", fr = "Passer"),
   landing_save = list(en = "Save & Continue", de = "Speichern & Weiter", fr = "Enregistrer & Continuer"),
   
-  # ── ML-based Assistant ─────────────────────────────────────────────────────
-  ai_assist_title = list(en = "\U0001F916 ML-based Assistant", de = "\U0001F916 ML-basierter Assistent", fr = "\U0001F916 Assistant ML"),
-  ai_checks_hint = list(en = "ML-based analysis of your data to suggest custom checks.", de = "ML-basierte Analyse Ihrer Daten f\u00fcr Pr\u00fcfungsvorschl\u00e4ge.", fr = "Analyse ML de vos donn\u00e9es pour sugg\u00e9rer des v\u00e9rifications."),
-  ai_cleanse_title = list(en = "\U0001F916 ML-based Cleansing Assistant", de = "\U0001F916 ML-basierter Bereinigungsassistent", fr = "\U0001F916 Assistant de nettoyage ML"),
+  # ──  Assistant ─────────────────────────────────────────────────────
+  ai_assist_title = list(en = "\U0001F916  Assistant", de = "\U0001F916 ML-basierter Assistent", fr = "\U0001F916 Assistant ML"),
+  ai_checks_hint = list(en = " analysis of your data to suggest custom checks.", de = "ML-basierte Analyse Ihrer Daten f\u00fcr Pr\u00fcfungsvorschl\u00e4ge.", fr = "Analyse ML de vos donn\u00e9es pour sugg\u00e9rer des v\u00e9rifications."),
+  ai_cleanse_title = list(en = "\U0001F916  Cleansing Assistant", de = "\U0001F916 ML-basierter Bereinigungsassistent", fr = "\U0001F916 Assistant de nettoyage ML"),
   ai_cleanse_hint = list(en = "Cluster-based anomaly detection identifies problems and proposes corrections. You decide.", de = "Clusterbasierte Anomalieerkennung. Sie entscheiden.", fr = "D\u00e9tection d'anomalies par clustering. Vous d\u00e9cidez."),
   
   # ── Performance ────────────────────────────────────────────────────────────
@@ -2382,7 +2379,7 @@ ai_suggest_checks <- function(df, lang = "en", max_checks = 25, sample_n = 50000
           expr <- paste0("FALSE")
           add(
             name = paste0("Coding consistency: Possible typos in ", cn),
-            desc = paste0("ML-based analysis found near-duplicate categories in '", cn, "'."),
+            desc = paste0(" analysis found near-duplicate categories in '", cn, "'."),
             reason = hint,
             sev = "Low",
             expr = expr,
@@ -3902,14 +3899,14 @@ ui <- bs4DashPage(
             div(class = "odqa-step-header", uiOutput("s4_header")),
             div(class = "odqa-hint info", span(class = "odqa-hint-icon", "\U0001F9E9"), uiOutput("s4_hint")),
             
-            # ML-based Assistance (moved: directly before sub-step A)
+            #  Assistance (moved: directly before sub-step A)
             div(class = "ai-assist-card",
                 div(class = "odqa-card-header",
                     div(class = "odqa-card-title-wrap",
                         div(class = "odqa-card-title", uiOutput("ai_assist_title_ui", inline = TRUE)),
                         div(class = "odqa-card-subtitle", uiOutput("ai_checks_hint_ui", inline = TRUE)))),
                 div(class = "btn-group-odqa",
-                    actionButton("ai_suggest_checks", "Generate ML-based Suggestions",
+                    actionButton("ai_suggest_checks", "Generate  Suggestions",
                                  class = "btn-odqa btn-odqa-primary", icon = icon("wand-magic-sparkles")),
                     actionButton("ai_clear_suggestions", "Clear",
                                  class = "btn-odqa btn-odqa-ghost", icon = icon("trash-can"))),
@@ -4053,7 +4050,7 @@ ui <- bs4DashPage(
                 fluidRow(column(4, uiOutput("cl_delcol_ui")),
                          column(4, actionButton("cl_delcol", "Delete Column", class = "btn-odqa btn-odqa-danger", style = "margin-top:25px")),
                          column(4, actionButton("cl_undo", "Undo Last", class = "btn-odqa btn-odqa-ghost", style = "margin-top:25px", icon = icon("rotate-left"))))),
-            # Card ML: ML-based Cleansing Assistant
+            # Card ML:  Cleansing Assistant
             div(class = "ai-assist-card",
                 div(class = "odqa-card-header", div(class = "odqa-card-badge", "\U0001F916"), div(div(class = "odqa-card-title", uiOutput("ai_cleanse_title_ui", inline = TRUE)), div(class = "odqa-card-subtitle", uiOutput("ai_cleanse_hint_ui", inline = TRUE)))),
                 fluidRow(column(4, uiOutput("ai_cleanse_col_ui")),
@@ -4253,7 +4250,7 @@ server <- function(input, output, session) {
     header <- div(class = "odqa-card",
                   div(class = "odqa-card-header",
                       div(class = "odqa-card-title-wrap",
-                          div(class = "odqa-card-title", "🤖 ML-Based Check Suggestions"),
+                          div(class = "odqa-card-title", "🤖  Check Suggestions"),
                           div(class = "odqa-card-subtitle",
                               switch(L(),
                                      de = "Datengetriebene Vorschläge (Missingness, Ausreißer, Zeitlogik, Codes).",
@@ -4360,7 +4357,7 @@ server <- function(input, output, session) {
       desc_parts <- c(desc_parts, "[Cross-column analysis]")
     
     rich_desc <- paste(desc_parts, collapse = " | ")
-    if (!nzchar(rich_desc)) rich_desc <- "ML-Based Suggested Check"
+    if (!nzchar(rich_desc)) rich_desc <- " Suggested Check"
     
     # ── V2.2: Human-readable check_name for reports and plots ────────────────
     check_name <- s$name %||% new_id
