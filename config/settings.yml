@@ -42,21 +42,6 @@ reporting:
   include_affected_records: true   # Include affected record detail in reports
   max_affected_rows_in_report: 500 # Cap affected records shown in report
 
-# ── Email Reporting ───────────────────────────────────────────────────────────
-email:
-  enabled: false
-  smtp_host: ""                    # e.g. smtp.yourorg.com
-  smtp_port: 587
-  use_tls: true
-  from_address: ""                 # e.g. opendqa@yourorg.com
-  from_name: "Open DQA"
-  username_env: "EMAIL_USERNAME"   # Environment variable for SMTP username
-  password_env: "EMAIL_PASSWORD"   # Environment variable for SMTP password
-  recipients: []                   # List of email addresses
-  # recipients:
-  #   - "data.team@yourorg.com"
-  #   - "quality.officer@yourorg.com"
-  default_report_format: "html"    # html | pdf
 
 # ── Session Logging ───────────────────────────────────────────────────────────
 logging:
