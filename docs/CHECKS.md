@@ -4,7 +4,7 @@
 
 ---
 
-## Category 1 — Completeness (16 checks)
+## Category 1 - Completeness (16 checks)
 
 These checks detect missing clinical codes when contextual evidence (admission date, clinical notes) indicates they should be present.
 
@@ -27,7 +27,7 @@ These checks detect missing clinical codes when contextual evidence (admission d
 | cat1_15 | Depression mention; no F32–F33 ICD | anamnese, icd | Medium |
 | cat1_16 | Admission present but both ICD and OPS missing | admission_date, icd, ops | High |
 
-## Category 2 — Age Plausibility (15 checks)
+## Category 2 - Age Plausibility (15 checks)
 
 These checks flag diagnoses that are clinically implausible for the patient's age.
 
@@ -49,7 +49,7 @@ These checks flag diagnoses that are clinically implausible for the patient's ag
 | cat2_14 | Testicular tumor (C62) in female patient | gender, icd | High |
 | cat2_15 | Delayed puberty (E30.0) in age > 60 | age, icd | Medium |
 
-## Category 3 — Gender Plausibility (15 checks)
+## Category 3 - Gender Plausibility (15 checks)
 
 These checks flag sex-specific diagnoses assigned to the wrong gender.
 
@@ -71,7 +71,7 @@ These checks flag sex-specific diagnoses assigned to the wrong gender.
 | cat3_14 | Cryptorchidism (Q53) in female patient | gender, icd | High |
 | cat3_15 | Hyperemesis gravidarum (O21) in male patient | gender, icd | High |
 
-## Category 4 — Temporal Consistency (6 checks)
+## Category 4 - Temporal Consistency (6 checks)
 
 These checks detect impossible or implausible date sequences.
 
@@ -84,7 +84,7 @@ These checks detect impossible or implausible date sequences.
 | cat4_12 | Admission date before birth date | admission_date, birth_date | Critical |
 | cat4_15 | Discharge before admission (duplicate check) | admission_date, discharge_date | Critical |
 
-## Category 5 — Diagnosis–Procedure Consistency (15 checks)
+## Category 5 - Diagnosis–Procedure Consistency (15 checks)
 
 These checks verify that procedure codes are paired with clinically corresponding diagnoses.
 
@@ -106,7 +106,7 @@ These checks verify that procedure codes are paired with clinically correspondin
 | cat5_14 | Upper GI endoscopy OPS without K-chapter ICD | ops, icd | Medium |
 | cat5_15 | Pacemaker OPS without I44–I49 ICD | ops, icd | Medium |
 
-## Category 6 — Code Integrity (10 checks)
+## Category 6 - Code Integrity (10 checks)
 
 These checks validate the syntactic and structural correctness of clinical codes.
 
