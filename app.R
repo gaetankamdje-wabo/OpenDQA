@@ -13,7 +13,7 @@
 #   - Landing page for optional user info (name, function, email)
 #   - Dynamic check constraints: is_not.na, not_contains, BETWEEN,
 #     NOT BETWEEN, IN(), NOT IN(), REGEXP
-#   - Optional ML-based Assistant for checks and data cleansing (cluster-based)
+#   - Assistant for checks and data cleansing (cluster-based)
 #   - Enhanced reports with detailed check info, metrics, plots
 #   - Email integration for sending reports (patient-ID redacted)
 #   - Professional footnotes

@@ -1,69 +1,18 @@
-# =============================================================================
-# Open DQA — .gitignore
-# =============================================================================
-
-# ── Patient / Clinical Data (NEVER commit) ───────────────────────────────────
-*.csv
-*.xlsx
-*.xls
-!data/Test_Data.csv
-!data/open_dqa_expected_hits.csv
-!data/OpenDQA_Checks_Metadata.xlsx
-*.json
-*.xml
-*.hl7
-*.fhir
-
-# ── Configuration with Secrets ───────────────────────────────────────────────
-.Renviron
-config/secrets.yml
-config/email_credentials.yml
-*.key
-*.pem
-*.env
-
-# ── R / RStudio ───────────────────────────────────────────────────────────────
+# R
 .Rhistory
+.Rproj.user
 .RData
 .Ruserdata
-*.Rproj.user/
+*.Rproj
+
+# Shiny
 rsconnect/
 
-# ── Session & Log Files ───────────────────────────────────────────────────────
-logs/
-!logs/.gitkeep
-sessions/
-
-# ── Report Output ─────────────────────────────────────────────────────────────
-reports/output/
-*.pdf
-*.html
-!docs/**/*.html
-
-# ── OS Files ─────────────────────────────────────────────────────────────────
+# System
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-desktop.ini
 
-# ── Editor / IDE ──────────────────────────────────────────────────────────────
-.vscode/
-*.swp
-*.swo
-*~
-
-# ── TinyTeX / LaTeX Artifacts ─────────────────────────────────────────────────
-*.aux
+# Temporary
 *.log
-*.out
-*.toc
-*.fls
-*.fdb_latexmk
-*.synctex.gz
-
-# ── Node (if any JS tooling) ─────────────────────────────────────────────────
-node_modules/
+*.tmp
+*.rds
