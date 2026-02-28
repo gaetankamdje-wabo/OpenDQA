@@ -1,49 +1,69 @@
-# History files
-.Rhistory
-.Rapp.history
+# =============================================================================
+# Open DQA — .gitignore
+# =============================================================================
 
-# Session Data files
-.RData
-.RDataTmp
+# ── Patient / Clinical Data (NEVER commit) ───────────────────────────────────
+*.csv
+*.xlsx
+*.xls
+!data/Test_Data.csv
+!data/open_dqa_expected_hits.csv
+!data/OpenDQA_Checks_Metadata.xlsx
+*.json
+*.xml
+*.hl7
+*.fhir
 
-# User-specific files
-.Ruserdata
-
-# Example code in package build process
-*-Ex.R
-
-# Output files from R CMD build
-/*.tar.gz
-
-# Output files from R CMD check
-/*.Rcheck/
-
-# RStudio files
-.Rproj.user/
-
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
-
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
-
-# knitr and R markdown default cache directories
-*_cache/
-/cache/
-
-# Temporary files created by R markdown
-*.utf8.md
-*.knit.md
-
-# R Environment Variables
+# ── Configuration with Secrets ───────────────────────────────────────────────
 .Renviron
+config/secrets.yml
+config/email_credentials.yml
+*.key
+*.pem
+*.env
 
-# pkgdown site
-docs/
-
-# translation temp files
-po/*~
-
-# RStudio Connect folder
+# ── R / RStudio ───────────────────────────────────────────────────────────────
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.user/
 rsconnect/
+
+# ── Session & Log Files ───────────────────────────────────────────────────────
+logs/
+!logs/.gitkeep
+sessions/
+
+# ── Report Output ─────────────────────────────────────────────────────────────
+reports/output/
+*.pdf
+*.html
+!docs/**/*.html
+
+# ── OS Files ─────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Editor / IDE ──────────────────────────────────────────────────────────────
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── TinyTeX / LaTeX Artifacts ─────────────────────────────────────────────────
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# ── Node (if any JS tooling) ─────────────────────────────────────────────────
+node_modules/
