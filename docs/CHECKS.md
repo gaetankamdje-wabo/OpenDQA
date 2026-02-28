@@ -129,7 +129,7 @@ These checks validate the syntactic and structural correctness of clinical codes
 
 | Level | Meaning |
 |---|---|
-| **Critical** | Data integrity violation — record is logically impossible. Must be corrected before any analysis. |
-| **High** | Strong clinical implausibility — likely a coding error. Requires manual review. |
-| **Medium** | Moderate plausibility concern — may represent unusual but valid cases or systematic coding issues. |
-| **Low** | Informational — unlikely to affect analysis significantly but worth noting. |
+| **Critical** | Data integrity violation - record is logically impossible. Must be corrected before any analysis. |
+| **High** | Strong clinical implausibility - likely a coding error. Requires manual review. |
+| **Medium** | Moderate plausibility concern - may represent unusual but valid cases or systematic coding issues. |
+| **Low** | Informational - unlikely to affect analysis significantly but worth noting. |
