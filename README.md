@@ -1,8 +1,6 @@
 # Open DQA — Open-Source Data Quality Assessment
 
-<p align="center">
-  <img src="assets/banner.png" alt="Open DQA Banner" width="800"/>
-</p>
+
 
 <p align="center">
   <a href="https://github.com/gkamdje/OpenDQA/releases"><img src="https://img.shields.io/badge/version-1.0-blue.svg" alt="Version"/></a>
