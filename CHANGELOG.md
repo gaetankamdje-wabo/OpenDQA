@@ -29,7 +29,6 @@ Initial public release.
 - Word (.docx) cleansing change log with regulatory context (ICH E6(R2), GDPR, FAIR, FDA 21 CFR Part 11, ISO 14155, OECD GLP)
 - CSV export for issues and cleaned data
 - Session fingerprint and data integrity hash
-- Patient ID redaction in email-delivered reports
 
 ### Interface
 - Trilingual UI (English, German, French)
