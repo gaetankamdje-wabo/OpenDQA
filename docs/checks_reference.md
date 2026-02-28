@@ -59,14 +59,14 @@ Validates that age–diagnosis combinations are clinically plausible.
 |---|---|---|---|
 | `cat2_1` | Prostate cancer (C61) in age < 15 | age, icd | High |
 | `cat2_2` | Alzheimer (F00/G30) in age < 30 | age, icd | High |
-| `cat2_3` | Child dev. disorder (F80–F89) in age > 70 | age, icd | Medium |
+| `cat2_3` | Child developmental disorder (F80–F89) in age > 70 | age, icd | Medium |
 | `cat2_4` | Osteoporosis (M80/M81) in age < 18 | age, icd | Medium |
 | `cat2_5` | Measles (B05) in age > 60 | age, icd | Medium |
 | `cat2_6` | Birth ICD (O60–O75) in male patient | gender, icd | High |
 | `cat2_7` | Menopause (N95) in male patient | gender, icd | High |
-| `cat2_8` | Teen acne (L70) in neonate (age < 1) | age, icd | Medium |
+| `cat2_8` | Acne (L70) in neonate (age < 1) | age, icd | Medium |
 | `cat2_9` | Macular degeneration (H35.3) in age < 30 | age, icd | Medium |
-| `cat2_10` | Infantile CP (G80) in adult (age > 21) | age, icd | Medium |
+| `cat2_10` | Infantile cerebral palsy (G80) in adult (age > 21) | age, icd | Medium |
 | `cat2_11` | Preeclampsia (O14) in male patient | gender, icd | High |
 | `cat2_12` | Juvenile arthritis (M08) in age > 70 | age, icd | Medium |
 | `cat2_13` | Testosterone deficiency (E29) in female patient | gender, icd | Medium |
@@ -90,10 +90,10 @@ Cross-validates gender-coded fields against gender-specific ICD-10 diagnoses.
 | `cat3_7` | Cervical cancer (C53) in male patient | gender, icd | High |
 | `cat3_8` | Testosterone excess (E28.1) in female patient | gender, icd | Medium |
 | `cat3_9` | Menstrual disorder (N92/N93) in male patient | gender, icd | High |
-| `cat3_10` | Breast cancer (C50) in male patient (rare; review) | gender, icd | Medium |
+| `cat3_10` | Breast cancer (C50) in male patient (rare; requires clinical review) | gender, icd | Medium |
 | `cat3_11` | Phimosis (N47) in female patient | gender, icd | High |
 | `cat3_12` | Vulvitis (N76) in male patient | gender, icd | High |
-| `cat3_13` | Perinatal codes (P-chapter) in male baby | gender, icd | Medium |
+| `cat3_13` | Perinatal codes (P-chapter) in male neonate | gender, icd | Medium |
 | `cat3_14` | Cryptorchidism (Q53) in female patient | gender, icd | High |
 | `cat3_15` | Hyperemesis gravidarum (O21) in male patient | gender, icd | High |
 
@@ -110,7 +110,7 @@ Validates logical ordering and plausibility of date fields.
 | `cat4_6` | Admission date lies in the future | admission_date | Medium |
 | `cat4_8` | Same-day discharge with complex OPS | admission_date, discharge_date, ops | Low |
 | `cat4_12` | Admission date before birth date | admission_date, birth_date | Critical |
-| `cat4_15` | Discharge before admission (dup check) | admission_date, discharge_date | Critical |
+| `cat4_15` | Discharge before admission (duplicate check) | admission_date, discharge_date | Critical |
 
 ---
 
@@ -128,10 +128,10 @@ Validates co-occurrence of diagnoses and procedures using evidence-based clinica
 | `cat5_6` | C-section OPS in male patient | ops, gender | High |
 | `cat5_7` | Cataract OPS without H25/H26 ICD | ops, icd | Medium |
 | `cat5_8` | Gastric bypass OPS without E66 ICD | ops, icd | Medium |
-| `cat5_9` | Hysterectomy OPS without GYN ICD | ops, icd | Medium |
+| `cat5_9` | Hysterectomy OPS without gynecological ICD | ops, icd | Medium |
 | `cat5_10` | Transfusion OPS without anemia ICD | ops, icd | Medium |
 | `cat5_11` | Knee arthroscopy OPS without knee ICD | ops, icd | Medium |
-| `cat5_12` | Radiology OPS without ICD reason | ops, icd | Medium |
+| `cat5_12` | Radiology OPS without ICD indication | ops, icd | Medium |
 | `cat5_13` | Skin graft OPS without wound/burn ICD | ops, icd | Medium |
 | `cat5_14` | Upper GI endoscopy OPS without K-chapter ICD | ops, icd | Medium |
 | `cat5_15` | Pacemaker OPS without I44–I49 ICD | ops, icd | Medium |
@@ -149,26 +149,26 @@ Validates syntactic and semantic correctness of coded clinical variables.
 | `cat6_3` | ICD potential typo (near-miss) | icd | Medium |
 | `cat6_4` | Likely ICD-9 code in ICD-10 environment | icd | Medium |
 | `cat6_5` | Placeholder/fake ICD (xxx, zzz) | icd | High |
-| `cat6_6` | Numeric ICD-9 style code in ICD-10 env | icd | Medium |
+| `cat6_6` | Numeric ICD-9 style code in ICD-10 environment | icd | Medium |
 | `cat6_7` | ICD length/shape out of range | icd | Medium |
 | `cat6_8` | OPS invalid structure | ops | Medium |
 | `cat6_9` | Foreign code system marker (z9) | icd, ops | Low |
 | `cat6_11` | Unspecific ICD (R99, Z00) | icd | Low |
 
-> **Note**: Check `cat6_10` is not implemented in the current version.
+**Note**: Check `cat6_10` is not implemented in the current version.
 
 ---
 
-## Adding Custom Checks
+## Custom Checks
 
 In addition to the 77 built-in checks, Open DQA supports institution-specific custom checks via the Custom Check Builder (Step 4). Custom checks support the following constraint types:
 
-- `is_not.na` — Field must not be missing/empty
+- `is_not.na` — Field must not be missing or empty
 - `not_contains` — Field must not contain specified text
 - `BETWEEN` / `NOT BETWEEN` — Numeric range validation
 - `IN()` / `NOT IN()` — Set membership validation
 - `REGEXP` — Regular expression pattern matching
 
-Custom checks can be exported as JSON and shared between institutions.
+Custom checks can be exported as JSON and shared between institutions for cross-site standardization.
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md#adding-new-quality-checks) for instructions on contributing new built-in checks.

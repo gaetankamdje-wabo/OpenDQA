@@ -40,16 +40,7 @@ reporting:
   logo_path: "assets/logo.png"     # Replace with your institutional logo
   report_author: ""                # Name printed in report footer
   include_affected_records: true   # Include affected record detail in reports
-  max_affected_rows_in_report: 500 # Cap affected records shown in PDF/HTML
-
-# ── AI Features ───────────────────────────────────────────────────────────────
-ai:
-  enabled: false                   # Set to true to enable AI-powered insights
-  provider: "anthropic"            # anthropic | openai | local
-  model: "claude-sonnet-4-20250514"
-  api_key_env: "ANTHROPIC_API_KEY" # Name of environment variable containing key
-  max_tokens: 1024
-  anonymize_before_send: true      # Always true; do not set to false
+  max_affected_rows_in_report: 500 # Cap affected records shown in report
 
 # ── Email Reporting ───────────────────────────────────────────────────────────
 email:

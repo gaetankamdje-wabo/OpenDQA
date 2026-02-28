@@ -13,9 +13,9 @@ This document provides step-by-step instructions for installing and running Open
 | CPU | 2-core, 1.8 GHz | 4-core, 2.5 GHz+ |
 | Disk Space | 500 MB | 2 GB+ |
 | Internet (install) | Required | Required |
-| Internet (runtime) | Optional* | Optional* |
+| Internet (runtime) | Not required | Not required |
 
-> *Internet is only required at runtime if AI-powered features are enabled.*
+Open DQA operates entirely offline at runtime. Internet connectivity is required only during initial package installation and for optional FHIR server or SQL database connections to remote endpoints.
 
 ---
 
@@ -24,7 +24,7 @@ This document provides step-by-step instructions for installing and running Open
 - **R** ≥ 4.2.0
 - **RStudio** ≥ 2022.07 *(recommended)* or any R-compatible IDE
 
-Note: Unlike earlier prototypes, Open DQA V1.0 does **not** require Pandoc, TinyTeX, or LaTeX. Reports are generated as Word (.docx) via the `officer` package.
+Open DQA does **not** require Pandoc, TinyTeX, or LaTeX. Reports are generated as Word (.docx) via the `officer` package.
 
 ---
 
@@ -32,9 +32,9 @@ Note: Unlike earlier prototypes, Open DQA V1.0 does **not** require Pandoc, Tiny
 
 ### Windows
 
-1. Download R from [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
+1. Download R from [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/).
 2. Run the installer with default settings.
-3. Download RStudio Desktop from [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
+3. Download RStudio Desktop from [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/).
 4. Install RStudio.
 
 ### macOS
@@ -171,9 +171,9 @@ update.packages(ask = FALSE)
 
 ### Application Loads but Shows Blank Screen
 
-- Clear browser cache and reload (`Ctrl+Shift+R`)
-- Try a different browser (Chrome or Firefox recommended)
-- Check the R console for error messages
+- Clear browser cache and reload (`Ctrl+Shift+R`).
+- Try a different browser (Chrome or Firefox recommended).
+- Check the R console for error messages.
 
 ### Memory Issues with Large Datasets
 

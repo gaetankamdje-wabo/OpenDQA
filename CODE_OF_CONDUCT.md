@@ -18,6 +18,7 @@ We pledge to act and interact in ways that contribute to an open, welcoming, div
 
 **Examples of unacceptable behavior:**
 
+- The use of sexualized language or imagery, and unwelcome sexual attention or advances
 - Trolling, insulting or derogatory comments, and personal or political attacks
 - Public or private harassment
 - Publishing others' private information (such as a physical or electronic address) without explicit permission
@@ -35,7 +36,7 @@ This Code of Conduct applies within all project spaces, and also applies when an
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at **[gaetankamdje.wabo@medma.uni-heidelberg.de]**. All complaints will be reviewed and investigated promptly and fairly. The project team is obligated to maintain confidentiality regarding the reporter of an incident.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at **[maintainer.email@institution.de]**. All complaints will be reviewed and investigated promptly and fairly. The project team is obligated to maintain confidentiality regarding the reporter of an incident.
 
 ## Attribution
 

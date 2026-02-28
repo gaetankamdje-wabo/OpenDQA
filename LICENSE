@@ -36,6 +36,5 @@ completeness, or fitness-for-purpose of quality check results. Use in production
 clinical environments is the sole responsibility of the deploying institution.
 
 Patient data processed by Open DQA remains entirely within the deploying
-institution's infrastructure. No patient data is transmitted externally, except
-where AI-powered features are explicitly enabled and configured, in which case
-anonymized statistical summaries only are transmitted to third-party APIs.
+institution's infrastructure. No patient data is transmitted externally during
+standard operation.

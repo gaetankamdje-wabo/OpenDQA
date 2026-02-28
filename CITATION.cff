@@ -1,72 +1,55 @@
 cff-version: 1.2.0
-message: "If you use Open DQA in your research or clinical work, please cite it as follows."
+title: "Open DQA: An Open-Source R Shiny Application for Clinical Data Quality Assessment"
+message: "If you use Open DQA in your research, please cite it using the metadata from this file."
 type: software
-title: "Open DQA: An Open-Source R Shiny Application for Medical Data Quality Assessment"
 version: "1.0"
 date-released: "2025-01-01"
-url: "https://github.com/gkamdje/OpenDQA"
-repository-code: "https://github.com/gkamdje/OpenDQA"
 license: MIT
-abstract: >
-  Open DQA is a comprehensive open-source R Shiny application for the systematic
-  assessment and guided cleansing of clinical and administrative healthcare data quality.
-  It implements 77 validated, rule-based checks across six quality dimensions:
-  completeness (16 checks), age plausibility (15), gender plausibility (15),
-  temporal consistency (6), diagnosis–procedure consistency (15), and code integrity (10).
-  The application features a trilingual interface (English, German, French),
-  cluster-based ML-assisted anomaly detection, publication-ready Word (.docx)
-  reporting with cryptographic session fingerprints, guided data cleansing with
-  full audit trail, and multi-source import supporting CSV, Excel, JSON, HL7 FHIR R4
-  bundles, and SQL databases (PostgreSQL, Microsoft SQL Server) with i2b2 and OMOP CDM
-  query templates. Open DQA follows a fitness-for-purpose approach and is designed
-  for deployment in hospital information systems, research data centers, and clinical
-  trial management environments.
+repository-code: "https://github.com/gkamdje/OpenDQA"
+url: "https://github.com/gkamdje/OpenDQA"
 keywords:
   - data quality
-  - medical informatics
-  - healthcare analytics
-  - R Shiny
   - clinical data
-  - ICD-10
+  - medical informatics
+  - R Shiny
+  - healthcare
   - FHIR
-  - OMOP
   - i2b2
-  - data quality assessment
-  - hospital information systems
+  - OMOP CDM
+  - ICD-10
+  - OPS
   - fitness-for-purpose
-  - data cleansing
-  - audit trail
+  - data quality assessment
+
 authors:
-  - family-names: "Kamdje Wabo"
-    given-names: "Gaetan"
-    email: "gaetankamdje.wabo@medma.uni-heidelberg.de"
-    affiliation: "MIISM, Klinikum Mannheim GmbH; Universität Heidelberg"
-  - family-names: "Sokolowski"
-    given-names: "P."
-    affiliation: "MIISM, Klinikum Mannheim GmbH; Universität Heidelberg"
-  - family-names: "Ganslandt"
-    given-names: "T."
-    affiliation: "MIISM, Klinikum Mannheim GmbH; Universität Heidelberg"
-  - family-names: "Siegel"
-    given-names: "F."
-    affiliation: "MIISM, Klinikum Mannheim GmbH; Universität Heidelberg"
+  - family-names: Kamdje Wabo
+    given-names: Gaetan
+    email: gaetankamdje.wabo@medma.uni-heidelberg.de
+    affiliation: "MIISM, Klinikum Mannheim GmbH / Universität Heidelberg"
+    orcid: ""
+  - family-names: Sokolowski
+    given-names: P.
+    affiliation: "MIISM, Klinikum Mannheim GmbH / Universität Heidelberg"
+  - family-names: Ganslandt
+    given-names: T.
+    affiliation: "MIISM, Klinikum Mannheim GmbH / Universität Heidelberg"
+  - family-names: Siegel
+    given-names: F.
+    affiliation: "MIISM, Klinikum Mannheim GmbH / Universität Heidelberg"
+
 preferred-citation:
-  type: article
-  title: "Open DQA: An Open-Source R Shiny Application for Medical Data Quality Assessment"
+  type: software
+  title: "Open DQA: An Open-Source R Shiny Application for Clinical Data Quality Assessment"
   authors:
-    - family-names: "Kamdje Wabo"
-      given-names: "Gaetan"
-      affiliation: "MIISM, Klinikum Mannheim GmbH; Universität Heidelberg"
-    - family-names: "Sokolowski"
-      given-names: "P."
-      affiliation: "MIISM, Klinikum Mannheim GmbH; Universität Heidelberg"
-    - family-names: "Ganslandt"
-      given-names: "T."
-      affiliation: "MIISM, Klinikum Mannheim GmbH; Universität Heidelberg"
-    - family-names: "Siegel"
-      given-names: "F."
-      affiliation: "MIISM, Klinikum Mannheim GmbH; Universität Heidelberg"
-  journal: "JMIR Medical Informatics"
+    - family-names: Kamdje Wabo
+      given-names: Gaetan
+    - family-names: Sokolowski
+      given-names: P.
+    - family-names: Ganslandt
+      given-names: T.
+    - family-names: Siegel
+      given-names: F.
   year: 2025
-  doi: "10.2196/XXXXX"
-  url: "https://medinform.jmir.org/XXXXX"
+  version: "1.0"
+  url: "https://github.com/gkamdje/OpenDQA"
+  notes: "Manuscript submitted to JMIR Medical Informatics."

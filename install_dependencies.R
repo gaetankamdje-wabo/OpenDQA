@@ -12,7 +12,7 @@ cat("╔════════════════════════
 cat("║           Open DQA V1.0 — Dependency Installer              ║\n")
 cat("╚══════════════════════════════════════════════════════════════╝\n\n")
 
-# ── Minimum R version check ─────────────────────────────────────────────────
+# ── Minimum R version check ──────────────────────────────────────────────────
 min_r_version <- "4.2.0"
 current_r <- paste(R.version$major, R.version$minor, sep = ".")
 if (compareVersion(current_r, min_r_version) < 0) {
@@ -26,7 +26,7 @@ if (compareVersion(current_r, min_r_version) < 0) {
 }
 cat(sprintf("✔  R version: %s\n", current_r))
 
-# ── Core CRAN packages (required) ───────────────────────────────────────────
+# ── Core CRAN packages (required) ────────────────────────────────────────────
 core_packages <- c(
   "shiny",          # Web application framework
   "bs4Dash",        # Bootstrap 4 dashboard UI
@@ -46,9 +46,9 @@ core_packages <- c(
   "plogr"           # Logging
 )
 
-# ── Optional CRAN packages ──────────────────────────────────────────────────
+# ── Optional CRAN packages ───────────────────────────────────────────────────
 optional_packages <- c(
-  "cluster",        # ML-based clustering for anomaly detection
+  "cluster",        # Listed in app.R header; not actively invoked in V1.0
   "emayili",        # Email report delivery via SMTP
   "DBI",            # Database interface
   "RPostgres",      # PostgreSQL connectivity
@@ -116,7 +116,7 @@ for (pkg in names(version_requirements)) {
   })
 }
 
-# ── Final summary ──────────────────────────────────────────────────────────────
+# ── Final summary ────────────────────────────────────────────────────────────
 cat("\n")
 cat("══════════════════════════════════════════════════════════════\n")
 cat("  Installation complete.\n\n")

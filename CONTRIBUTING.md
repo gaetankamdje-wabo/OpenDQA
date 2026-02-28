@@ -1,254 +1,163 @@
 # Contributing to Open DQA
 
-Thank you for your interest in contributing to Open DQA! We welcome contributions from the medical informatics, health data science, clinical data engineering, and software development communities.
-
-This document provides guidelines to help ensure that contributions are high-quality, consistent, and efficiently reviewed.
-
----
-
-## Table of Contents
-
-- [Code of Conduct](#code-of-conduct)
-- [How to Contribute](#how-to-contribute)
-- [Development Setup](#development-setup)
-- [Branch Naming Convention](#branch-naming-convention)
-- [Coding Standards](#coding-standards)
-- [Adding New Quality Checks](#adding-new-quality-checks)
-- [Adding or Improving Translations](#adding-or-improving-translations)
-- [Testing Requirements](#testing-requirements)
-- [Pull Request Process](#pull-request-process)
-- [Reporting Bugs](#reporting-bugs)
-- [Requesting Features](#requesting-features)
-- [Recognition](#recognition)
+Contributions from the medical informatics, health data science, and clinical engineering communities are welcome. This document describes how to report bugs, suggest features, add new quality checks, and submit code changes.
 
 ---
 
 ## Code of Conduct
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). We are committed to providing a welcoming and inclusive environment for everyone.
+This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to maintain a respectful and professional environment.
 
 ---
 
-## How to Contribute
+## Reporting Bugs
 
-There are many ways to contribute to Open DQA, even without writing code:
+1. Search [existing issues](https://github.com/gkamdje/OpenDQA/issues) to check if the bug has already been reported.
+2. Open a new issue using the **Bug Report** template.
+3. Include: R version, OS, browser, steps to reproduce, expected behavior, actual behavior, and (if applicable) a minimal dataset that triggers the issue.
 
-- **Report bugs** via [GitHub Issues](https://github.com/gkamdje/OpenDQA/issues)
-- **Suggest new quality checks** — especially domain-specific clinical rules
-- **Improve documentation** — fix typos, add examples, clarify instructions
-- **Add or improve translations** — currently EN, DE, FR; new languages welcome
-- **Submit code** — bug fixes, new features, performance improvements
-- **Review pull requests** — help evaluate and provide feedback on others' contributions
-- **Share clinical domain knowledge** — expert input on check logic and thresholds
+---
+
+## Requesting Features
+
+1. Open a new issue using the **Feature Request** template.
+2. Describe the use case, expected behavior, and any relevant clinical or technical context.
 
 ---
 
 ## Development Setup
 
 ### Prerequisites
-
 - R ≥ 4.2.0
-- RStudio (recommended) or VS Code with R extension
-- Git ≥ 2.30
+- RStudio (recommended)
+- Git
 
-### Fork and Clone
-
+### Setup
 ```bash
-# 1. Fork the repository on GitHub (click "Fork" button)
-
-# 2. Clone your fork
-git clone https://github.com/YOUR-USERNAME/OpenDQA.git
+git clone https://github.com/gkamdje/OpenDQA.git
 cd OpenDQA
-
-# 3. Add the upstream remote
-git remote add upstream https://github.com/gkamdje/OpenDQA.git
-
-# 4. Install dependencies
+git checkout -b feature/your-feature-name
 Rscript install_dependencies.R
 ```
 
-### Keeping Your Fork Updated
+### Architecture Overview
 
-```bash
-git fetch upstream
-git checkout main
-git merge upstream/main
-```
+Open DQA V1.0 uses a single-file architecture (`app.R`, approximately 7,900 lines). The file is organized into 12 clearly delimited sections:
 
----
-
-## Branch Naming Convention
-
-Use descriptive, lowercase, hyphen-separated branch names following this pattern:
-
-| Type | Pattern | Example |
-|---|---|---|
-| New feature | `feature/short-description` | `feature/omop-import` |
-| Bug fix | `fix/short-description` | `fix/date-parsing-timezone` |
-| Documentation | `docs/short-description` | `docs/improve-installation-guide` |
-| New check | `check/category-name` | `check/temporal-los-negative` |
-| Translation | `i18n/language-code` | `i18n/spanish-es` |
-| Refactor | `refactor/short-description` | `refactor/completeness-module` |
-
----
-
-## Coding Standards
-
-### R Style Guide
-
-Open DQA follows the [tidyverse style guide](https://style.tidyverse.org/) with the following additions:
-
-- Use `snake_case` for all variable and function names.
-- Maximum line length: **100 characters**.
-- Use `<-` for assignment (not `=`).
-- Handle all possible `NA`/`NULL` inputs gracefully — use `tryCatch` for robustness.
-- The current application is a single-file `app.R`. New utility functions should be placed in the appropriate `R/` subdirectory for eventual modularization.
-
-### Current Architecture
-
-Open DQA V1.0 is structured as a single `app.R` file (~7,900 lines) organized into 12 sections:
-
-1. **Libraries**: Package loading with graceful fallbacks
-2. **Internationalisation (i18n)**: Key-value store for EN/DE/FR strings
-3. **Data Readers**: CSV, Excel, JSON, FHIR, SQL importers
-4. **ICD-10 & OPS Validators**: Regex-based code validation
-5. **Utilities**: Helper functions, ML tools, performance utilities
-6. **Check Metadata**: 77 check definitions in the `CL` list
-7. **Word Report Generation**: `officer`/`flextable`-based .docx export
-8. **FAQ Data**: Trilingual FAQ entries
-9. **CSS Design System**: Complete CSS for the application
-10. **UI Definition**: `bs4DashPage` layout with step-based navigation
-11. **Server Logic**: Reactive logic, check execution, cleansing
-12. **Launch**: `shinyApp(ui, server)`
-
-### Key Packages
-
-| Package | Used For |
+| Section | Content |
 |---|---|
-| `bs4Dash` | UI framework (not `shinydashboard`) |
-| `officer` + `flextable` | Word report generation (not `rmarkdown`) |
-| `data.table::fread()` | CSV import (not `readr`) |
-| `emayili` | Email delivery (not `mailR`) |
-| `waiter` | Loading spinners |
+| 1 | Package loading and initialization |
+| 2 | `I18N` — Internationalization strings (EN, DE, FR) |
+| 3 | Helper functions and utilities |
+| 4 | Statistical analysis assistant functions |
+| 5 | Master check suggestion function |
+| 6 | `CL` — Check library (77 built-in checks) |
+| 7 | Report generation (`officer` + `flextable`) |
+| 8 | UI definition (`bs4Dash`) |
+| 9 | Server logic |
+| 10 | Data import handlers |
+| 11 | Check execution engine |
+| 12 | Cleansing and export |
+
+The `R/` directory contains empty subdirectories reserved for future modularization.
 
 ---
 
 ## Adding New Quality Checks
 
-Adding a new check is the most impactful way to contribute.
+### Step 1: Define the Check
 
-### 1. Determine the Category
-
-Assign your check to one of the six existing categories (`cat1_` through `cat6_`), or propose a new category in the issue tracker first.
-
-### 2. Add the Check to the `CL` List
-
-In `app.R`, Section 6, add your check to the `CL` list following the existing pattern:
+Add a new entry to the `CL` list in `app.R` (Section 6). Follow the existing naming convention:
 
 ```r
-CL <- list(
-  # ... existing checks ...
-  cat1_17 = list(w = "Your check description.", n = c("required_col1", "required_col2"), sev = "Medium"),
-)
-```
-
-Fields:
-- `w`: Short description of what the check flags
-- `n`: Character vector of required mapped column names
-- `sev`: Severity level (`"Critical"`, `"High"`, `"Medium"`, `"Low"`)
-
-### 3. Implement the Check Logic
-
-Add the corresponding check logic in the server section's check execution block, following the pattern of existing checks.
-
-### 4. Add Translations
-
-Add UI-facing strings to the `I18N` list in Section 2 for all three languages (EN, DE, FR).
-
-### 5. Add Test Cases
-
-Add test records to `data/Test_Data.csv` with patient IDs following the pattern `T_catX_Y` (e.g., `T_cat1_17`). Update `data/open_dqa_expected_hits.csv` with the expected hits.
-
-### 6. Document
-
-Add an entry for your check in `docs/checks_reference.md`.
-
----
-
-## Adding or Improving Translations
-
-Translation strings are maintained inline in the `I18N` list in `app.R` (Section 2). The structure is:
-
-```r
-I18N <- list(
-  my_key = list(
-    en = "English text",
-    de = "German text",
-    fr = "French text"
+cat<CATEGORY>_<NUMBER> = list(
+  name = list(
+    en = "English check name",
+    de = "German check name",
+    fr = "French check name"
   ),
-  # ...
+  description = list(
+    en = "English description",
+    de = "German description",
+    fr = "French description"
+  ),
+  severity = "High",           # Critical | High | Medium | Low
+  required_cols = c("icd", "age"),  # Required target fields
+  expression = "grepl(...)"    # R logical expression (TRUE = violation)
 )
 ```
 
-To add a new language, add a new key to each entry and update the language selector in the UI definition (Section 10).
+### Step 2: Provide Trilingual Text
+
+All check names and descriptions must be provided in English, German, and French.
+
+### Step 3: Add Test Data
+
+1. Add corresponding test records to `data/Test_Data.csv` using the patient ID convention `T_catX_Y`.
+2. Add expected hits to `data/open_dqa_expected_hits.csv`.
+
+### Step 4: Run Validation
+
+```r
+source("tests/run_validation.R")
+```
+
+Verify that your new check is executed and produces the expected results.
 
 ---
 
-## Testing Requirements
+## Improving Translations
 
-All code contributions must include or update tests:
+All translation strings are in the `I18N` list (Section 2 of `app.R`). Each entry follows the structure:
 
-- All 77 existing checks must continue to produce expected results against `data/Test_Data.csv` matching `data/open_dqa_expected_hits.csv`.
-- New checks must have associated test records in `data/Test_Data.csv` and expected hits in `data/open_dqa_expected_hits.csv`.
-
-```bash
-Rscript tests/run_validation.R
+```r
+key_name = list(en = "English", de = "Deutsch", fr = "Français")
 ```
+
+When modifying translations, ensure all three languages are updated simultaneously.
+
+---
+
+## Extending the Statistical Analysis Assistant
+
+The statistical analysis assistant (Section 4 of `app.R`) uses classical statistical and heuristic methods.
+
+When adding new statistical methods:
+
+1. Implement the function using base R or CRAN packages already in the dependency list.
+2. Document the statistical method and its scholarly reference.
+3. Register the function in the master dispatcher `ai_detect_anomalies()` or `ai_suggest_checks()`.
+4. Ensure all output strings are trilingual (EN, DE, FR).
 
 ---
 
 ## Pull Request Process
 
-1. **Ensure your branch is up to date** with `upstream/main` before opening a PR.
-2. **Fill out the PR template** completely — incomplete PRs may be closed without review.
-3. **Link any related issues** using `Closes #issue_number` in the PR description.
-4. **Ensure all checks pass**: Run the validation script locally before submitting.
-5. **Limit PRs to a single concern** — separate bug fixes from features.
-6. **Request a review** from at least one maintainer.
+1. Fork the repository and create a feature branch.
+2. Make your changes with clear, descriptive commit messages.
+3. Ensure the validation script passes: `source("tests/run_validation.R")`.
+4. Open a pull request using the PR template.
+5. Address reviewer feedback.
 
-PRs will be reviewed within **14 business days**.
+### PR Requirements
 
----
-
-## Reporting Bugs
-
-Please use the [Bug Report issue template](.github/ISSUE_TEMPLATE/bug_report.md). Include:
-
-- Open DQA version number
-- R version and operating system
-- Steps to reproduce the issue
-- Expected vs. actual behavior
-- Relevant error messages or log output
-
-**Security vulnerabilities** should be reported by email to the project lead rather than as public issues.
+- All new checks must include trilingual text (EN, DE, FR).
+- All new checks must include test data and expected results.
+- No new R package dependencies without prior discussion.
+- Code style: Follow the existing conventions in `app.R`.
 
 ---
 
-## Requesting Features
+## Versioning
 
-Please use the [Feature Request issue template](.github/ISSUE_TEMPLATE/feature_request.md). Describe:
+This project uses [Semantic Versioning](https://semver.org/). Version numbers follow `MAJOR.MINOR.PATCH`:
 
-- The clinical or technical problem you are trying to solve
-- Your proposed solution
-- Alternative approaches you have considered
-- Any relevant literature or standards references
-
----
-
-## Recognition
-
-All contributors are listed in [CHANGELOG.md](CHANGELOG.md) and the project's GitHub contributor graph. Significant contributors may be invited to co-author future academic publications describing Open DQA.
+- **MAJOR**: Breaking changes to check semantics, data format, or report structure.
+- **MINOR**: New checks, new features, new data source support.
+- **PATCH**: Bug fixes, translation corrections, documentation updates.
 
 ---
 
-Thank you for helping improve data quality in healthcare! 🏥
+## License
+
+By contributing, you agree that your contributions will be licensed under the [MIT License](LICENSE).
