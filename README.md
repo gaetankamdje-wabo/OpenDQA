@@ -1,4 +1,4 @@
-# Open DQA — Open-Source Data Quality Assessment
+# Open DQA - Open-Source Data Quality Assessment
 
 
 
@@ -507,6 +507,3 @@ Open DQA is released under the **MIT License**. See [LICENSE](LICENSE) for the f
 
 ---
 
-<p align="center">
-  <sub>Built with ❤️ for clinical data quality • Mannheim 🇩🇪</sub>
-</p>
