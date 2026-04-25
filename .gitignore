@@ -1,18 +1,73 @@
-# R
+# R session history and workspace images
 .Rhistory
-.Rproj.user
+.Rapp.history
 .RData
+.RDataTmp
+*.RData
+*.rda
+*.rds
+
+# R checkpoint and user data capture
+.Rproj.user/
 .Ruserdata
+
+# RStudio project and workspace files
 *.Rproj
 
-# Shiny
-rsconnect/
+# R CMD check output
+*.Rcheck/
+*.tar.gz
 
-# System
+# renv
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/staging/
+renv/python/
+
+# Package development artefacts
+/doc/
+/Meta/
+src/*.o
+src/*.so
+src/*.dll
+
+# Shiny temporary files
+shiny-server.log
+shiny-server.err
+*.pid
+
+# Open DQA runtime outputs (certificates, CSVs, JSON exports)
+DQ_Certificate_*.docx
+Cleansing_Certificate_*.docx
+Issues_*.csv
+Cleaned_*.csv
+Audit_Trail_*.csv
+odqa_checks_*.json
+*.tmp
+
+# Local data (never commit patient data)
+data/
+uploads/
+exports/
+*.xlsx
+*.xls
+!demo_data.xlsx
+
+# Credentials and environment files
+.env
+.env.local
+secrets.R
+db_config.R
+.Renviron
+
+# IDE and OS metadata
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
-
-# Temporary
-*.log
-*.tmp
-*.rds
+desktop.ini
+*~
+*.swp
+*.swo
