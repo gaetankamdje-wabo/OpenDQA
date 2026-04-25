@@ -404,7 +404,7 @@ If Open DQA supports work leading to publication, please cite:
 
 ```bibtex
 @software{OpenDQA,
-  author  = {Kamdje Wabo, Gaetan and Ganslandt, Thomas and Siegel, Fabian and Sokolowski, Piotr},
+  author  = {Kamdje Wabo,et al.},
   title   = {{Open DQA}: Fitness-for-Purpose Data Quality Assessment for Clinical Research},
   url     = {https://github.com/gaetankamdje-wabo/OpenDQA},
   note    = {Mannheim Institute for Intelligent Systems in Medicine (MIISM), Heidelberg University}
